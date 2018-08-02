@@ -1,9 +1,7 @@
 package com.vssekorin.word90sec.model
 
 import java.time.LocalDate
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 class Account(
@@ -11,5 +9,7 @@ class Account(
     val username: String,
     val password: String,
     val premiumEnd: LocalDate,
-    val telegramId: Long
+    val telegramId: Long,
+    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL], orphanRemoval = true)
+    val sentences: List<Sentence>
 )
