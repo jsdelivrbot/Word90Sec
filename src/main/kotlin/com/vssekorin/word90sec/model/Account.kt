@@ -4,12 +4,26 @@ import java.time.LocalDate
 import javax.persistence.*
 
 @Entity
-class Account(
-    @Id @GeneratedValue val id: Long,
+data class Account(
+    @Id @GeneratedValue val id: Long = 0,
     val username: String,
     val password: String,
-    val premiumEnd: LocalDate,
-    val telegramId: Long,
+    val telegramId: Long
+) {
+
+    val premiumEnd: LocalDate = LocalDate.now().minusDays(1)
+
     @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL], orphanRemoval = true)
-    val sentences: List<Sentence>
-)
+    val sentences: List<Sentence> = ArrayList<Sentence>()
+
+    constructor(telegramId: Long): this(
+        username = telegramId.toString(),
+        telegramId = telegramId
+    )
+
+    constructor(username: String, telegramId: Long): this(
+        username = username,
+        password = username,
+        telegramId = telegramId
+    )
+}
