@@ -7,8 +7,9 @@ import javax.persistence.Id
 
 @Entity
 data class Sentence(
-    @Id @GeneratedValue val id: Long = 0,
     val content: String
 ) {
+    @Id @GeneratedValue val id: Long = 0
+
     val date: LocalDate = LocalDate.now()
 }

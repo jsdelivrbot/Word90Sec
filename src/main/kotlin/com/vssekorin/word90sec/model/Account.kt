@@ -5,11 +5,12 @@ import javax.persistence.*
 
 @Entity
 data class Account(
-    @Id @GeneratedValue val id: Long = 0,
     val username: String,
     val password: String,
     val telegramId: Long
 ) {
+
+    @Id @GeneratedValue val id: Long = 0
 
     val premiumEnd: LocalDate = LocalDate.now().minusDays(1)
 

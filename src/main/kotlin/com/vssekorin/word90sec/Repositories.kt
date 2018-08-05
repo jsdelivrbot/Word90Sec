@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface AccountRepository : CrudRepository<Account, Long> {
-    fun findByTelegramId(telegramId: Long): Account
+    fun findByTelegramId(telegramId: Long): Account?
 }
 
 @Repository
