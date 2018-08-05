@@ -10,6 +10,5 @@ data class Sentence(
     val content: String
 ) {
     @Id @GeneratedValue val id: Long = 0
-
     val date: LocalDate = LocalDate.now()
 }

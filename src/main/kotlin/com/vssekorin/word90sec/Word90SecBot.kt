@@ -11,7 +11,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException
 
 @Component
 class Word90SecBot @Autowired constructor(
-    private val users: AccountRepository
+    private val accounts: AccountRepository
 ) : TelegramLongPollingBot() {
 
     override fun onUpdateReceived(update: Update) {
@@ -27,10 +27,10 @@ class Word90SecBot @Autowired constructor(
 
     private fun start(msg: Message): String {
         val id = msg.chatId
-        return users.findByTelegramId(id)
+        return accounts.findByTelegramId(id)
             ?.let { "А я Вас узнал! Мы уже встречались ранее." }
             ?: let {
-                users.save(Account(telegramId = id))
+                accounts.save(Account(telegramId = id))
                 "Привет. Будем знакомы."
             }
     }

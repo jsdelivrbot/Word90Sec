@@ -11,7 +11,6 @@ data class Account(
 ) {
 
     @Id @GeneratedValue val id: Long = 0
-
     val premiumEnd: LocalDate = LocalDate.now().minusDays(1)
 
     @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL], orphanRemoval = true)
