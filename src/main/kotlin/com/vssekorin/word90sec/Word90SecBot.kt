@@ -19,6 +19,7 @@ class Word90SecBot @Autowired constructor(
             val msg = update.message
             val answer = when (msg.text.toLowerCase()) {
                 "/start" -> start(msg)
+                "/info" -> info()
                 else -> "I don't do a whole lot... yet."
             }
             send(msg.chatId, answer)
@@ -33,6 +34,12 @@ class Word90SecBot @Autowired constructor(
                 accounts.save(Account(telegramId = id))
                 "Привет. Будем знакомы."
             }
+    }
+
+    private fun info(): String {
+        return "Я существую, чтобы помочь тебе выучить новые слова. " +
+            "Для этого я использую \"Метод 90 секунд\" Антона Брежестовского.\n" +
+            "Подробнее: https://brejestovski.livejournal.com/52385.html\n\n"
     }
 
     override fun getBotUsername(): String = "Word90Sec"
