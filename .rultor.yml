@@ -1,0 +1,9 @@
+docker:
+  image: java8
+env:
+  JAVA_OPTS: -XX:MaxPermSize=256m -Xmx1g
+merge:
+  script: |
+    ./gradlew clean build test
+architect:
+- VsSekorin
